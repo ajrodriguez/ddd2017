@@ -1,0 +1,18 @@
+version: '2'
+
+# docker rmi $(docker images -a --filter=dangling=true -q)
+
+services:
+    mysql:
+        image: mariadb:10
+        environment:
+            MYSQL_USER: local
+            MYSQL_PASSWORD: local
+            MYSQL_DATABASE: drupal
+            MYSQL_ROOT_PASSWORD: 'root'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
+        ports:
+            - "3306:3306"
+        volumes: 
+            - ./data/mysql:/var/lib/mysql
+        restart: always
